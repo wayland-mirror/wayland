@@ -1334,7 +1334,12 @@ wl_display_connect_to_fd(int fd)
  *
  * If WAYLAND_SOCKET is set, it's interpreted as a file descriptor number
  * referring to an already opened socket. In this case, the socket is used
- * as-is and \c name is ignored.
+ * as-is and \c name is ignored. The WAYLAND_SOCKET env var is unset and the
+ * `FD_CLOEXEC` flag is set on the file descriptor.
+ *
+ * With WAYLAND_SOCKET set, this call is **not** thread safe, since \c unsetenv
+ * is not thread safe, and since it may race with another thread calling
+ * `wl_display_connect`.
  *
  * If \c name is a relative path, then the socket is opened relative to
  * the XDG_RUNTIME_DIR directory.
