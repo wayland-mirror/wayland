@@ -22,7 +22,7 @@ they don't have many dependencies:
 
     $ git clone https://gitlab.freedesktop.org/wayland/wayland
     $ cd wayland
-    $ meson build/ --prefix=PREFIX
+    $ meson setup build/ --prefix=PREFIX
     $ ninja -C build/ install
 
 where PREFIX is where you want to install the libraries.
