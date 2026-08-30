@@ -213,7 +213,7 @@ ring_buffer_allocate(struct wl_ring_buffer *b, size_t size_bits)
 {
 	char *new_data;
 
-	new_data = calloc(size_pot(size_bits), 1);
+	new_data = zalloc(size_pot(size_bits));
 	if (!new_data)
 		return -1;
 
